@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+/logzio-test-deploy.iml
+.gitignore
+.idea/
+logzio-test-deploy.iml
+src/main/resources/
+src/test/
