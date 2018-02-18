@@ -8,8 +8,7 @@ jdk:
 
  script:
     provider: script
-    script:
-      - echo $TRAVIS_TAG
+    script: echo $TRAVIS_TAG
 #      - ./mvnw -Drevision==$TRAVIS_TAG verify -Dgpg.skip
     on:
       tags: true
