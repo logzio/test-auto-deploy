@@ -20,7 +20,7 @@ jobs:
           script: skip
           deploy:
             provider: script
-            script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
+            script: "echo $TRAVIS_TAG"
             on:
               tags: true
               branch: master
