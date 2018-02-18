@@ -22,5 +22,4 @@ jobs:
             provider: script
             script: "echo $TRAVIS_TAG"
             on:
-              tags: true
               branch: master
