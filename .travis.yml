@@ -1,4 +1,12 @@
 language: java
 jdk: oraclejdk8
+
+cache:
+  directories:
+    - '$HOME/.m2'
+
 install: ./mvnw install -Dgpg.skip
-script: ./mvnw verify -Dgpg.skip
+script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
+   on:
+            tags: true
+            branch: master
