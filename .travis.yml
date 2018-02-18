@@ -1,7 +1,7 @@
 language: java
 jdk:
 - oraclejdk8
-#install: ./mvnw install -Dgpg.skip
+install: ./mvnw install -Dgpg.skip
 #install:
 #  ./mvnw -Drevision==$TRAVIS_TAG verify -Dgpg.skip
 #-Dgpg.passphrase=Asia2307
