@@ -6,7 +6,21 @@ cache:
     - '$HOME/.m2'
 
 install: ./mvnw install -Dgpg.skip
-script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
+#script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
 #   on:
 #            tags: true
 #            branch: master
+
+jobs:
+  include:
+    - stage: deploy
+          sudo: false
+          services: []
+          install: skip
+          script: skip
+          deploy:
+            provider: script
+            script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
+            on:
+              tags: true
+              branch: master
