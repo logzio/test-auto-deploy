@@ -5,11 +5,15 @@ jdk:
 #install:
 #  ./mvnw -Drevision==$TRAVIS_TAG verify -Dgpg.skip
 #-Dgpg.passphrase=Asia2307
-
- deploy:
-    provider: script
-    script: echo $TRAVIS_TAG
+before_deploy: "echo $TRAVIS_TAG"
+ on:
+  tags: true
+  branch:master
+  
+# deploy:
+  # provider: script
+   # script: echo $TRAVIS_TAG
 #      - ./mvnw -Drevision==$TRAVIS_TAG verify -Dgpg.skip
-    on:
-      tags: true
-      branch: master
+   # on:
+    #  tags: true
+     # branch: master
