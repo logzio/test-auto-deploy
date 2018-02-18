@@ -6,7 +6,7 @@ jdk:
 #  ./mvnw -Drevision==$TRAVIS_TAG verify -Dgpg.skip
 #-Dgpg.passphrase=Asia2307
 
- script:
+ deploy:
     provider: script
     script: echo $TRAVIS_TAG
 #      - ./mvnw -Drevision==$TRAVIS_TAG verify -Dgpg.skip
