@@ -1,3 +1,4 @@
 language: java
 jdk: oraclejdk8
-script: ./mvnw install -Dgpg.skip
+install: ./mvnw install -Dgpg.skip
+script: ./mvnw verify -Dgpg.passphrase=Asia2307
