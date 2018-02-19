@@ -31,6 +31,7 @@
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
+        <gpg_key>marina@logz.io</gpg_key>
     </properties>
 
     <build>
@@ -47,7 +48,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>1.5</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -56,7 +57,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>marina@logz.io</keyname>
+                            <keyname>${gpg_key}</keyname>
                         </configuration>
                     </execution>
                 </executions>
