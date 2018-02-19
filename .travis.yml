@@ -22,6 +22,8 @@ jobs:
 #      install: skip
 ##      script: skip
        deploy:
+        sudo: false
+        services: []
         provider: script
         script: bash release/verify.sh
         on:
