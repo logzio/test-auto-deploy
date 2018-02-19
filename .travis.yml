@@ -11,13 +11,15 @@ before_install:
 
 install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
 
+deploy: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.passphrase=$GPG_PASSPHRASE
 
 jobs:
   include:
     - stage: Build and Test
       script: echo " Build and Test " $TRAVIS_BRANCH
+      deploy: skip
 
-#    - stage: Deploy to Public Repository
+    - stage: Deploy to Public Repository
 #      script: echo "Deploying GitHub Release " $TRAVIS_TAG
 ##      install: skip
 ##      script: skip
