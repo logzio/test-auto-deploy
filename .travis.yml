@@ -9,7 +9,7 @@ cache:
 before_install:
   - gpg --fast-import release/keys
 
-install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+# install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
 
 
 jobs:
@@ -18,6 +18,9 @@ jobs:
       script: echo " Build and Test " $TRAVIS_BRANCH
       jdk: oraclejdk8
       script: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+      install : skip
+      deploy: skip
+      script: echo "!!!!!"
 
 #    - stage: Deploy to Public Repository
 #      script: echo "Deploying GitHub Release " $TRAVIS_TAG
