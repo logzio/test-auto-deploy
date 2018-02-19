@@ -5,10 +5,10 @@ cache:
   directories:
     - '$HOME/.m2'
 
-install: ./mvnw install -Drevision=$TRAVIS_TAG -Dgpg.skip
-#  - gpg --fast-import release/keys
-#  - ./mvnw install -Dgpg_key=$GPGKEY -Dgpg.passphrase=$GPG_PASSPHRASE
-#  - echo 'finish to MAVEN install'
+install:
+  - gpg --fast-import release/keys
+  - ./mvnw install -Dgpg_key=$GPGKEY -Dgpg.passphrase=$GPG_PASSPHRASE
+  - echo 'finish to MAVEN install'
 #script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
 #   on:
 #            tags: true
@@ -16,10 +16,11 @@ install: ./mvnw install -Drevision=$TRAVIS_TAG -Dgpg.skip
 
 jobs:
   include:
+
     - stage: deploy
       sudo: false
       services: []
-      install: skip
+#      install: skip
       script: skip
       deploy:
         provider: script
