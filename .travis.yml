@@ -17,9 +17,9 @@ jobs:
   include:
     - stage: Build and Test
       script: echo " Build and Test " $TRAVIS_BRANCH
-      deploy: skip
+  #    deploy: skip
 
-    - stage: Deploy to Public Repository
+   # - stage: Deploy to Public Repository
 #      script: echo "Deploying GitHub Release " $TRAVIS_TAG
 ##      install: skip
 ##      script: skip
