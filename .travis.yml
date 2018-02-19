@@ -14,7 +14,7 @@ install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
 jobs:
   include:
     - stage: install
-      script: echo " Build and Test " $TRAVIS_BRANCH
+      script: echo "Build and Test " $TRAVIS_BRANCH
     - stage: deploy
       sudo: false
       services: []
