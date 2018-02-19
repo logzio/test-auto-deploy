@@ -1,11 +1,11 @@
-#language: java
-#jdk: oraclejdk8
-#
-#cache:
-#  directories:
-#    - '$HOME/.m2'
+language: java
+jdk: oraclejdk8
 
-#install: ./mvnw install -Dgpg.skip
+cache:
+  directories:
+    - '$HOME/.m2'
+
+install: ./mvnw install -Dgpg.skip
 #script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
 #   on:
 #            tags: true
@@ -14,12 +14,13 @@
 jobs:
   include:
     - stage: deploy
-          sudo: false
-          services: []
-          install: skip
-          script: skip
-          deploy:
-            provider: script
-            script: "echo $TRAVIS_TAG"
-            on:
-              branch: master
+      sudo: false
+      services: []
+      install: skip
+      script: skip
+      deploy:
+        provider: script
+        script: release/verify.sh
+        on:
+          tags: true
+          branch: master
