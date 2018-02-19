@@ -11,21 +11,34 @@ before_install:
 
 install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
 
-
 jobs:
   include:
-#    - stage: Build and Test
-#      script: echo " Build and Test " $TRAVIS_BRANCH
-
-   - stage: Deploy to Public Repository
-#      script: echo "Deploying GitHub Release " $TRAVIS_TAG
+    - stage: deploy
+      sudo: false
+      services: []
 #      install: skip
-##      script: skip
-       deploy:
-        sudo: false
-        services: []
+      script: skip
+      deploy:
         provider: script
-        script: bash release/verify.sh
+        script: release/verify.sh
         on:
           tags: true
           branch: master
+
+#jobs:
+#  include:
+##    - stage: Build and Test
+##      script: echo " Build and Test " $TRAVIS_BRANCH
+#
+#   - stage: Deploy to Public Repository
+##      script: echo "Deploying GitHub Release " $TRAVIS_TAG
+##      install: skip
+###      script: skip
+#       deploy:
+#        sudo: false
+#        services: []
+#        provider: script
+#        script: bash release/verify.sh
+#        on:
+#          tags: true
+#          branch: master
