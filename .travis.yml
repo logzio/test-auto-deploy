@@ -20,7 +20,8 @@ jobs:
       script: skip
       deploy:
         provider: script
-        script: release/verify.sh
+        script: bash ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+#        script: release/verify.sh
         on:
           tags: true
           branch: master
