@@ -9,7 +9,7 @@ cache:
 before_install:
   - gpg --fast-import release/keys
 
-# install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
 
 
 jobs:
