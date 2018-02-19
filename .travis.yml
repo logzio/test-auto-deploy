@@ -5,9 +5,10 @@ cache:
   directories:
     - '$HOME/.m2'
 
-before_install: gpg --fast-import release/keys
-
-install: ./mvnw install -Dgpg_key=$GPGKEY -Dgpg.passphrase=$GPG_PASSPHRASE
+install:
+  - gpg --fast-import release/keys
+  - ./mvnw install -Dgpg_key=$GPGKEY -Dgpg.passphrase=$GPG_PASSPHRASE
+  - echo 'finish to MAVEN install'
 #script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
 #   on:
 #            tags: true
