@@ -21,10 +21,10 @@ jobs:
     - stage: Deploy to Public Repository
       script: echo "Deploying GitHub Release " $TRAVIS_TAG
 #      install: skip
-      script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.passphrase=$GPG_PASSPHRASE
-#      deploy:
-#        provider: script
-#        script: release/verify.sh
+#      script: skip
+       deploy:
+        provider: script
+        script: release/verify.sh
         on:
           tags: true
           branch: master
