@@ -20,11 +20,12 @@ jobs:
       script: skip
       deploy:
         provider: script
-        script: bash ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+        script: bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.passphrase=$GPG_PASSPHRASE
 #        script: release/verify.sh
         on:
           tags: true
           branch: master
+      after_deploy: echo "Finush deploy release " $TRAVIS_TAG    
 
 #jobs:
 #  include:
