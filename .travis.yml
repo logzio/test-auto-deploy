@@ -5,7 +5,9 @@ cache:
   directories:
     - '$HOME/.m2'
 
-install: ./mvnw install -Dgpg.skip
+before_install: gpg --fast-import release/keys
+
+install: ./mvnw install -Dgpg_key=$GPGKEY -Dgpg.passphrase=$GPG_PASSPHRASE
 #script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
 #   on:
 #            tags: true
