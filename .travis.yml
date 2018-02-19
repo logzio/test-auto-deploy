@@ -5,26 +5,24 @@ cache:
   directories:
     - '$HOME/.m2'
 
-install:
+# import GPG key into environment
+before_install:
   - gpg --fast-import release/keys
-  - ./mvnw install -Dgpg_key=$GPGKEY -Dgpg.passphrase=$GPG_PASSPHRASE
-  - echo 'finish to MAVEN install'
-#script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.skip
-#   on:
-#            tags: true
-#            branch: master
+
+install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+
+deploy: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.passphrase=$GPG_PASSPHRASE
 
 jobs:
   include:
-
     - stage: deploy
       sudo: false
       services: []
 #      install: skip
       script: skip
       deploy:
-        provider: script
-        script: release/verify.sh
+#        provider: script
+#        script: release/verify.sh
         on:
           tags: true
           branch: master
