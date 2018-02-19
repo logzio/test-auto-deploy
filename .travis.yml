@@ -15,12 +15,14 @@ deploy: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.passphrase=$GPG_PASSPHRASE
 
 jobs:
   include:
-    - stage: deploy
-      sudo: false
-      services: []
+    - stage: Build and Test
+      script: echo " Build and Test " $TRAVIS_BRANCH
+
+    - stage: Deploy to Public Repository
+      script: echo "Deploying GitHub Release " $TRAVIS_TAG
 #      install: skip
-      script: skip
-      deploy:
+      script: ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg.passphrase=$GPG_PASSPHRASE
+#      deploy:
 #        provider: script
 #        script: release/verify.sh
         on:
