@@ -12,8 +12,8 @@ jobs:
     - stage: Test $TRAVIS_BRANCH
       script: echo "Build and Test " $TRAVIS_BRANCH
     - stage: deploy
-#      sudo: false
-#      services: []
+      sudo: false
+      services: []
       install: skip
       script: skip
       before_deploy: echo 'BEFORE DEPLOY : ' $TRAVIS_TAG
