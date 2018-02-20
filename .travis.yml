@@ -11,7 +11,7 @@ jobs:
   include:
     - stage: Test
       script: echo 'Build and Test ' $TRAVIS_BRANCH
-    - stage: Update_verion
+    - stage: update
       sudo: false
       services: []
       install: skip
@@ -55,4 +55,4 @@ jobs:
 #            tags: true
 #            branch: master
 
-      after_deploy: echo 'Finish to deploy to '
+#      after_deploy: echo 'Finish to deploy to '
