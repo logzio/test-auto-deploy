@@ -11,7 +11,7 @@ jobs:
   include:
     - stage: Test
       script: echo 'Build and Test ' $TRAVIS_BRANCH
-    - stage: Update Version
+    - stage: Update_verion
       install: skip
       script: skip
       before_deploy:
@@ -26,7 +26,7 @@ jobs:
             tags: true
             branch: master
       after_deploy: echo 'Update version in pom.xml'
-    - stage: Deploy to Central Repository
+    - stage: Deploy_to_Central_Repository
       sudo: false
       services: []
       install: skip
