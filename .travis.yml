@@ -22,14 +22,20 @@ jobs:
         - rm release/codesigning.asc
         - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
       deploy:
-        skip_cleanup: true
+        # deploy to central repository
         - provider: script
+          skip_cleanup: true
           script: bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+          on:
+            tags: true
+            branch: master
+        # deploy to github new version
         - provider: pages
+          skip_cleanup: true
           github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
           keep-history: true
-        on:
-          tags: true
-          branch: master
+          on:
+            tags: true
+            branch: master
 
       after_deploy: echo '!!!!!!!!!!!!!'
