@@ -17,11 +17,11 @@ jobs:
       services: []
       install: skip
       script: skip
-      before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
+      before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG-SNAPSHOT
       deploy:
         - provider: pages
           skip_cleanup: true
-#          target-branch: master
+          target-branch: master
           github-token: $GITHUB_TOKEN
           keep-history: true
           on:
