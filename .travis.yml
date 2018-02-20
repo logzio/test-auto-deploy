@@ -12,10 +12,11 @@ jobs:
     - stage: Test
       script: echo 'Build and Test ' $TRAVIS_BRANCH
     - stage: Update_verion
+      sudo: false
+      services: []
       install: skip
       script: skip
-      before_deploy:
-        - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG-SNAPSHOT
+      before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
       deploy:
         provider: pages
           skip_cleanup: true
@@ -26,24 +27,24 @@ jobs:
             tags: true
             branch: master
       after_deploy: echo 'Update version in pom.xml'
-    - stage: Deploy_to_Central_Repository
-      sudo: false
-      services: []
-      install: skip
-      script: skip
-      before_deploy:
-        - openssl aes-256-cbc  -in release/codesigning.asc.enc -out release/codesigning.asc -d -k $CODESIGNING
-        - gpg --fast-import release/codesigning.asc
-        - rm release/codesigning.asc
-        - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
-      deploy:
-        # deploy to central repository
-        provider: script
-          skip_cleanup: true
-          script: bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
-          on:
-            tags: true
-            branch: master
+#    - stage: Deploy_to_Central_Repository
+#      sudo: false
+#      services: []
+#      install: skip
+#      script: skip
+#      before_deploy:
+#        - openssl aes-256-cbc  -in release/codesigning.asc.enc -out release/codesigning.asc -d -k $CODESIGNING
+#        - gpg --fast-import release/codesigning.asc
+#        - rm release/codesigning.asc
+#        - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
+#      deploy:
+#        # deploy to central repository
+#        provider: script
+#          skip_cleanup: true
+#          script: bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+#          on:
+#            tags: true
+#            branch: master
         # deploy to github new version
 #        - provider: pages
 #          skip_cleanup: true
