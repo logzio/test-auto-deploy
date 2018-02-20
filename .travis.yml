@@ -23,9 +23,10 @@ jobs:
         provider: script
 #        script: release/verify.sh
         script:
-          - bash ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
-          - bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
-#          - bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+#          - bash ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
+#          - bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+          - bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+          - bash echo 'Finish to deploy' $TRAVIS_TAG
         on:
           tags: true
           branch: master
