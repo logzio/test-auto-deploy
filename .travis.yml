@@ -18,8 +18,8 @@ jobs:
       install: skip
       script: skip
       before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
-      - deploy:
-        provider: pages
+      deploy:
+        - provider: pages
           skip_cleanup: true
           target-branch: master
           github-token: $GITHUB_TOKEN
@@ -28,7 +28,8 @@ jobs:
             tags: true
             branch: master
 
-#      after_deploy: echo "Update version in pom
+#      after_deploy: echo 'Update version in pom'
+
 #    - stage: Deploy_to_Central_Repository
 #      sudo: false
 #      services: []
@@ -47,4 +48,14 @@ jobs:
 #          on:
 #            tags: true
 #            branch: master
-#      after_deploy: echo 'Finish to deploy'
+        # deploy to github new version
+#        - provider: pages
+#          skip_cleanup: true
+#          target-branch: master
+#          github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+#          keep-history: true
+#          on:
+#            tags: true
+#            branch: master
+
+#      after_deploy: echo 'Finish to deploy to '
