@@ -16,13 +16,15 @@ jobs:
       services: []
       install: skip
       script: skip
-      before_deploy: echo 'BEFORE DEPLOY ' $TRAVIS_TAG
+      before_deploy:
+        - openssl aes-256-cbc  -in release/codesigning.asc.enc -out release/codesigning.asc -d -k $CODESIGNING
+        - gpg --fast-import release/codesigning.asc
       deploy:
         provider: script
-        script: release/verify.sh
-#        script: bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+#        script: release/verify.sh
+        script: bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
         on:
           tags: true
           branch: master
-      after_deploy: echo 'Finish deploy release ' $TRAVIS_TAG
+      after_deploy: rm release/codesigning.asc
 
