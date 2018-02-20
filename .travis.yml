@@ -22,7 +22,7 @@ jobs:
       deploy:
         provider: script
 #        script: release/verify.sh
-        script: bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Ggpg.passphrase=$GPG_PASSPHRASE
+        script: bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
         on:
           tags: true
           branch: master
