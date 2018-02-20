@@ -9,8 +9,8 @@ install: ./mvnw clean install -Dgpg.skip
 
 jobs:
   include:
-    - stage: Test
-      script: echo 'Build and Test ' $TRAVIS_BRANCH
+#    - stage: Test
+#      script: echo 'Build and Test ' $TRAVIS_BRANCH
 
     - stage: update
       sudo: false
