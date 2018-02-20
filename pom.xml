@@ -31,7 +31,6 @@
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
-        <gpg_key>marina@logz.io</gpg_key>
     </properties>
 
     <build>
@@ -56,9 +55,6 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
-                        <configuration>
-                            <keyname>${gpg_key}</keyname>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
