@@ -9,14 +9,14 @@ install: ./mvnw clean install -Dgpg.skip
 
 jobs:
   include:
-    - stage: Test $TRAVIS_BRANCH
+    - stage: Test
       script: echo "Build and Test " $TRAVIS_BRANCH
     - stage: deploy
       sudo: false
       services: []
       install: skip
       script: skip
-      before_deploy: echo 'BEFORE DEPLOY : ' $TRAVIS_TAG
+      before_deploy: echo 'BEFORE DEPLOY ' $TRAVIS_TAG
       deploy:
         provider: script
         script: realese/verify.sh
@@ -24,5 +24,5 @@ jobs:
         on:
           tags: true
           branch: master
-      after_deploy: echo 'Finish deploy release : ' $TRAVIS_TAG
+      after_deploy: echo 'Finish deploy release ' $TRAVIS_TAG
 
