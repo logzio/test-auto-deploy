@@ -7,7 +7,7 @@ cache:
 
 # import GPG key into environment
 before_install:
-  - gpg --fast-import release/keys
+  - gpg --fast-import release/secret.asc
 
 install: ./mvnw install -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
 
