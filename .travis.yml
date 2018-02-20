@@ -21,6 +21,7 @@ jobs:
         - gpg --fast-import release/codesigning.asc
         - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
       deploy:
+        skip_cleanup: true
         provider: script
 #        script: release/verify.sh
         script: bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
