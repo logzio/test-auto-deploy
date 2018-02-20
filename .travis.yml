@@ -40,8 +40,7 @@ jobs:
         - rm release/codesigning.asc
         - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
       deploy:
-        # deploy to central repository
-        provider: script
+        - provider: script
           skip_cleanup: true
           script: bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
           on:
