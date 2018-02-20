@@ -29,10 +29,6 @@
         <url>https://github.com/logzio/test-auto-deploy</url>
     </scm>
 
-    <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
