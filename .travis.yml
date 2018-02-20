@@ -19,7 +19,7 @@ jobs:
       before_deploy: echo 'BEFORE DEPLOY ' $TRAVIS_TAG
       deploy:
         provider: script
-        script: realese/verify.sh
+        script: release/verify.sh
 #        script: bash ./mvnw verify -Drevision=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
         on:
           tags: true
