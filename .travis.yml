@@ -19,7 +19,7 @@ jobs:
       script: skip
       before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
       deploy:
-        - provider: pages
+        provider: pages
           skip_cleanup: true
           target-branch: master
           github-token: $GITHUB_TOKEN
@@ -27,9 +27,7 @@ jobs:
           on:
             tags: true
             branch: master
-
-      after_deploy: echo 'Update version in pom'
-
+#      after_deploy: echo 'Update version in pom'
     - stage: Deploy_to_Central_Repository
       sudo: false
       services: []
@@ -48,4 +46,4 @@ jobs:
           on:
             tags: true
             branch: master
-      after_deploy: echo 'Finish to deploy'
+#      after_deploy: echo 'Finish to deploy'
