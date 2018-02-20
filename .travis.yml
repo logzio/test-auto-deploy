@@ -27,8 +27,8 @@ jobs:
           on:
             tags: true
             branch: master
+      after_deploy: echo 'Update version in pom.xml'
 
-#      after_deploy: echo 'Update version in pom.xml'
 #    - stage: Deploy_to_Central_Repository
 #      sudo: false
 #      services: []
