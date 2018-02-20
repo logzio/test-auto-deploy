@@ -32,6 +32,7 @@ jobs:
         # deploy to github new version
         - provider: pages
           skip_cleanup: true
+          target-branch: master
           github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
           keep-history: true
           on:
