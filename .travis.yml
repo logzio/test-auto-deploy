@@ -9,25 +9,25 @@ install: ./mvnw clean install -Dgpg.skip
 
 jobs:
   include:
-#    - stage: Test
-#      script: echo 'Build and Test ' $TRAVIS_BRANCH
-#
-#    - stage: update
-#      sudo: false
-#      services: []
-#      install: skip
-#      script: skip
-#      before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
-#      deploy:
-#        - provider: pages
-#          skip_cleanup: true
-#          target-branch: master
-#          github-token: $GITHUB_TOKEN
-#          keep-history: true
-#          on:
-#            tags: true
-#            branch: master
-#      after_deploy: echo 'Update version in pom'
+    - stage: Test
+      script: echo 'Build and Test ' $TRAVIS_BRANCH
+
+    - stage: update
+      sudo: false
+      services: []
+      install: skip
+      script: skip
+      before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
+      deploy:
+        - provider: pages
+          skip_cleanup: true
+          target-branch: master
+          github-token: $GITHUB_TOKEN
+          keep-history: true
+          on:
+            tags: true
+            branch: master
+      after_deploy: echo 'Update version in pom'
 
     - stage: deploy
       sudo: false
