@@ -24,7 +24,7 @@ jobs:
       deploy:
         - provider: script
           skip_cleanup: true
-          script: bash ./mvnw verify -DnewVersion=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+          script: bash ./mvnw delpoy -DnewVersion=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
           on:
             tags: true
             branch: master
