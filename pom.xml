@@ -6,7 +6,7 @@
 
     <groupId>io.logz.test</groupId>
     <artifactId>logzio-test-deploy</artifactId>
-    <version>1.3.3-SNAPSHOT</version>
+    <version>1.3.4</version>
 
     <packaging>jar</packaging>
     <name>Logzio test auto deploy</name>
