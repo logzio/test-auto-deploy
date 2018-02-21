@@ -12,23 +12,6 @@ jobs:
     - stage: Test
       script: echo 'Build and Test ' $TRAVIS_BRANCH
 
-    - stage: update
-      sudo: false
-      services: []
-      install: skip
-      script: skip
-      before_deploy: ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
-      deploy:
-        - provider: pages
-          skip_cleanup: true
-          target-branch: master
-          github-token: $GITHUB_TOKEN
-          keep-history: true
-          on:
-            tags: true
-            branch: master
-      after_deploy: echo 'Update version in pom'
-
     - stage: deploy
       sudo: false
       services: []
@@ -38,13 +21,11 @@ jobs:
         - openssl aes-256-cbc  -in release/codesigning.asc.enc -out release/codesigning.asc -d -k $CODESIGNING
         - gpg --fast-import release/codesigning.asc
         - rm release/codesigning.asc
-        - ./mvnw versions:set -DnewVersion=$TRAVIS_TAG
       deploy:
         - provider: script
           skip_cleanup: true
-          script: bash ./mvnw verify -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
+          script: bash ./mvnw verify -DnewVersion=$TRAVIS_TAG -Dgpg_key=$GPG_KEY -Dgpg.passphrase=$GPG_PASSPHRASE
           on:
             tags: true
             branch: master
-
-#      after_deploy: echo 'Finish to deploy to '
+      after_deploy: echo 'Finish to deploy'
